@@ -1,0 +1,27 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Traffic Management</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head><body>
+<div class="app"><aside><h2>🚦 AI Traffic</h2><small>Mobility Optimization</small>
+<nav><button data-p="dashboard">Dashboard</button><button data-p="traffic">Live Traffic</button><button data-p="detection">AI Detection</button><button data-p="signals">Signal Optimization</button><button data-p="incidents">Incidents</button><button data-p="analytics">Analytics</button><button data-p="routes">Route Optimization</button></nav><p id="status">● Backend</p></aside>
+<main><header><div><h1 id="title">Traffic Command Center</h1><p>AI-Powered Urban Traffic Management & Mobility Optimization System</p></div><button onclick="refreshAll()">↻ Refresh</button></header>
+
+<section id="dashboard" class="page active"><div class="cards">
+<div class="card">Vehicles<strong id="total">—</strong></div><div class="card">Avg Speed<strong id="speed">—</strong></div><div class="card">Density<strong id="dens">—</strong></div><div class="card">Congestion<strong id="level">—</strong></div></div>
+<div class="grid"><div class="panel"><h2>Live Traffic Map</h2><div id="map"></div></div><div class="panel"><h2>Traffic by Camera</h2><canvas id="chart"></canvas></div></div>
+<div class="grid"><div class="panel"><h2>AI Prediction</h2><p>15-minute traffic forecast.</p><button onclick="predict()">Predict Traffic</button><div id="prediction"></div></div><div class="panel"><h2>System Pipeline</h2><p>Camera → YOLO → Vehicle Count → Density → Prediction → Signal Optimization</p></div></div></section>
+
+<section id="traffic" class="page"><div class="panel"><h2>Live Traffic</h2><div class="table"><table><thead><tr><th>Camera</th><th>Location</th><th>Cars</th><th>Bikes</th><th>Buses</th><th>Trucks</th><th>Total</th><th>Speed</th><th>Density</th><th>Level</th></tr></thead><tbody id="trafficRows"></tbody></table></div></div></section>
+
+<section id="detection" class="page"><div class="grid"><div class="panel"><h2>AI Vehicle Detection</h2><p>Upload a traffic image for YOLO detection.</p><form id="detect"><input type="file" id="image" accept="image/*" required><button>Analyze</button></form><div id="detectOut"></div></div><div class="panel"><h2>Detection Output</h2><p>Cars, bikes, buses and trucks are classified and used to estimate traffic density.</p></div></div></section>
+
+<section id="signals" class="page"><div class="panel"><h2>Intelligent Signal Optimization</h2><select id="junction"><option>Junction 1</option></select><button onclick="optimize()">Run AI Optimization</button><div id="signalOut"></div></div><div class="panel"><h2>Signal Timings</h2><div class="table"><table><thead><tr><th>Junction</th><th>Direction</th><th>Green</th><th>Yellow</th><th>Red</th></tr></thead><tbody id="signalRows"></tbody></table></div></div></section>
+
+<section id="incidents" class="page"><div class="grid"><div class="panel"><h2>Report Incident</h2><form id="incident" class="form"><input id="loc" placeholder="Location" required><select id="type"><option>Accident</option><option>Road Blockage</option><option>Heavy Congestion</option><option>Wrong-Way Vehicle</option></select><select id="sev"><option>LOW</option><option selected>MEDIUM</option><option>HIGH</option><option>CRITICAL</option></select><input id="conf" type="number" min="0" max="1" step=".01" value=".90"><textarea id="desc" placeholder="Description"></textarea><button>Report</button></form></div><div class="panel"><h2>Incident Queue</h2><div id="incRows"></div></div></div></section>
+
+<section id="analytics" class="page"><div class="cards"><div class="card">Records<strong id="records">—</strong></div><div class="card">Vehicles<strong id="vehicles">—</strong></div><div class="card">Avg Speed<strong id="aspeed">—</strong></div><div class="card">Avg Density<strong id="adens">—</strong></div></div><div class="panel"><h2>Traffic History</h2><canvas id="history"></canvas></div></section>
+
+<section id="routes" class="page"><div class="grid"><div class="panel"><h2>AI Route Optimization</h2><form id="route" class="form"><input id="source" value="Junction 1" placeholder="Source"><input id="destination" value="Junction 4" placeholder="Destination"><button>Find Route</button></form></div><div class="panel"><h2>Recommendation</h2><div id="routeOut">Enter a source and destination.</div></div></div></section>
+</main></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="js/app.js"></script></body></html>
